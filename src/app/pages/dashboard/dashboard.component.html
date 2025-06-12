@@ -1,0 +1,84 @@
+<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Dashboard</h1>
+    <h3 class="text-2xl font-bold">Visão Geral</h3>
+    
+    <div class="grid grid-cols-3 gap-10">
+        <div class="rounded-2xl border border-stone-600 w-full p-6">
+            <p class="text-lg">Total de Produtos</p>
+            <p class="text-2xl font-bold">150</p>
+        </div>
+        <div class="rounded-2xl border border-stone-600 w-full p-6">
+            <p class="text-lg">Total de Estoques</p>
+            <p class="text-2xl font-bold">150</p>
+        </div>
+        <div class="rounded-2xl border border-stone-600 w-full p-6">
+            <p class="text-lg">Produtos com estoque baixo</p>
+            <p class="text-2xl font-bold">150</p>
+        </div>
+    </div>
+
+    <h3 class="text-2xl font-bold">Produtos com estoque baixo</h3>
+
+    <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl">
+        <table class="w-full border border-stone-600 text-left rtl:text-right">
+            <thead class="bg-stone-700">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Produto
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Estoque
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Categoria
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Quantidade
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-stone-800 border-b border-stone-600">
+                    <th scope="row" class="px-6 py-4 text-center">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4 text-center">
+                        Armazem 1
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        Tecnologia
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        350
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500">
+                            Adicionar Quantidade
+                        </button>
+                    </td>
+                </tr>
+                <tr class="bg-stone-800 border-b border-stone-600">
+                    <th scope="row" class="px-6 py-4 text-center">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4 text-center">
+                        Armazem 1
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        Tecnologia
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        350
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500">Adicionar Quantidade</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</main>
