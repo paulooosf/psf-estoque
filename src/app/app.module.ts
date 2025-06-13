@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListarCategoriasComponent } from './pages/listar-categorias/listar-categorias.component';
 import { CriarCategoriaComponent } from './pages/criar-categoria/criar-categoria.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CriarCategoriaComponent } from './pages/criar-categoria/criar-categoria
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
