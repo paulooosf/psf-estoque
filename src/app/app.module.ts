@@ -10,8 +10,8 @@ import { CriarCategoriaComponent } from './pages/categoria/criar-categoria/criar
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalProdutosComponent } from './components/modal-produtos/modal-produtos.component';
-import { ListarProdutosComponent } from './pages/listar-produtos/listar-produtos.component';
-import { CriarProdutoComponent } from './pages/criar-produto/criar-produto.component';
+import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
+import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
 
 @NgModule({
   declarations: [
