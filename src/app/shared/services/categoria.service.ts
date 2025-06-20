@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoriaListagemDto } from '../models/categoria/categoria.listagem.dto';
 import { CategoriaEntradaDto } from '../models/categoria/categoria.entrada.dto';
+import { PaginacaoDto } from '../models/common/paginacao.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,13 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<CategoriaListagemDto[]> {
-    return this.http.get<CategoriaListagemDto[]>(this.API)
+  listar(pagina: number): Observable<PaginacaoDto<CategoriaListagemDto>> {
+
+    let params = new HttpParams()
+                    .set('pagina', pagina)
+                    .set('tamanhoPagina', 10)
+  
+    return this.http.get<PaginacaoDto<CategoriaListagemDto>>(this.API, { params })
   }
 
   buscar(id: number): Observable<CategoriaListagemDto> {
