@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ListarCategoriasComponent } from './pages/listar-categorias/listar-categorias.component';
-import { CriarCategoriaComponent } from './pages/criar-categoria/criar-categoria.component';
+import { ListarCategoriasComponent } from './pages/categoria/listar-categorias/listar-categorias.component';
+import { CriarCategoriaComponent } from './pages/categoria/criar-categoria/criar-categoria.component';
 
 const routes: Routes = [
   {
