@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListarCategoriasComponent } from './pages/categoria/listar-categorias/listar-categorias.component';
 import { CriarCategoriaComponent } from './pages/categoria/criar-categoria/criar-categoria.component';
 import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
+import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'produtos',
     component: ListarProdutosComponent
+  },
+  {
+    path: 'criar-produto',
+    component: CriarProdutoComponent
   }
 ];
 
