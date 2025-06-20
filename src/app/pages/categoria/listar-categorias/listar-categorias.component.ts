@@ -28,13 +28,13 @@ export class ListarCategoriasComponent implements OnInit {
   constructor(private service: CategoriaService) { }
 
   ngOnInit(): void {
-    this.service.listar(this.paginaAtual).subscribe((listaCategorias) => {
+    this.service.listar(this.paginaAtual, 10).subscribe((listaCategorias) => {
       this.listaCategorias = listaCategorias
     })
   }
 
   carregarMaisCategorias() {
-    this.service.listar(++this.paginaAtual).subscribe((listaCategorias) => {
+    this.service.listar(++this.paginaAtual, 10).subscribe((listaCategorias) => {
       this.listaCategorias.itens.push(...listaCategorias.itens)
       this.listaCategorias.temProximaPagina = listaCategorias.temProximaPagina
     })
