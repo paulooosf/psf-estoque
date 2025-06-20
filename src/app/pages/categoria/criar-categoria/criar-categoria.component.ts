@@ -10,7 +10,7 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
 })
 export class CriarCategoriaComponent implements OnInit {
 
-  formulario!: FormGroup;
+  formulario!: FormGroup
 
   constructor(private service: CategoriaService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -27,7 +27,7 @@ export class CriarCategoriaComponent implements OnInit {
     if (this.formulario.valid) {
       this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/categorias']))
     } else {
-      alert('Preencha o formulário corretamente!')
+      alert('Preencha a categoria corretamente!')
     }
   }
 
