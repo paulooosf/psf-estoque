@@ -1,0 +1,37 @@
+<main class="fixed bg-black/60 inset-0 z-50 flex justify-center items-center">
+    <div class="bg-stone-800 rounded-xl w-[50vw] p-6">
+        <h1 class="text-2xl font-bold">Produtos</h1>
+        <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl mt-3">
+            <table class="w-full border border-stone-600 text-left rtl:text-right">
+                <thead class="bg-stone-700">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Nome
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Quantidade
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let produto of produtos" class="bg-stone-800 border-b border-stone-600" >
+                        <th scope="row" class="px-6 py-4 text-center">
+                            {{ produto.nome }}
+                        </th>
+                        <td class="px-6 py-4 text-center">
+                            {{ produto.quantidade }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-row justify-end mt-6 gap-3">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="onFecharModal()"
+            >
+                Fechar
+            </button>
+        </div>
+    </div>
+</main>
