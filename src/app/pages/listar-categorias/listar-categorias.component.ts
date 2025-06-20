@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaListagemDto } from 'src/app/shared/models/categoria/categoria.listagem.dto';
+import { PaginacaoDto } from 'src/app/shared/models/common/paginacao.dto';
+import { CategoriaService } from 'src/app/shared/services/categoria.service';
 
 @Component({
   selector: 'app-listar-categorias',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarCategoriasComponent implements OnInit {
 
-  constructor() { }
+  listaCategorias: PaginacaoDto<CategoriaListagemDto> = {
+    itens: [],
+    numeroPagina: 1,
+    tamanhoPagina: 10,
+    totalPaginas: 0,
+    totalItens: 0,
+    temPaginaAnterior: false,
+    temProximaPagina: false
+  }
+  paginaAtual: number = 1
+
+  constructor(private service: CategoriaService) { }
 
   ngOnInit(): void {
+    this.service.listar(this.paginaAtual).subscribe((listaCategorias) => {
+      this.listaCategorias = listaCategorias
+    })
+  }
+
+  carregarMaisCategorias() {
+    this.service.listar(++this.paginaAtual).subscribe((listaCategorias) => {
+      this.listaCategorias.itens.push(...listaCategorias.itens)
+      this.listaCategorias.temProximaPagina = listaCategorias.temProximaPagina
+    })
   }
 
 }

@@ -1,11 +1,11 @@
-<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+<main class="bg-stone-800 text-white px-60 py-14 flex flex-col gap-10">
     <h1 class="text-4xl font-bold">Categorias</h1>
     <div class="flex flex-row justify-between">
         <h3 class="text-2xl font-bold">Listagem</h3>
         <a routerLink="/criar-categoria" class="rounded-md bg-lime-200 py-2 px-4 hover:bg-lime-500 text-black hover:text-white">Adicionar Categoria</a>
     </div>
 
-    <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl">
+    <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl" *ngIf="listaCategorias.itens && listaCategorias.itens.length > 0; else semCategorias">
         <table class="w-full border border-stone-600 text-left rtl:text-right">
             <thead class="bg-stone-700">
                 <tr>
@@ -21,38 +21,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-stone-800 border-b border-stone-600">
+                <tr *ngFor="let categoria of listaCategorias.itens" class="bg-stone-800 border-b border-stone-600" >
                     <th scope="row" class="px-6 py-4 text-center">
-                        Tecnologia
+                        {{ categoria.nome }}
                     </th>
                     <td class="px-6 py-4 text-center">
-                        23
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        <button class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500">
-                            Visualizar Produtos
-                        </button>
-                    </td>
-                </tr>
-                <tr class="bg-stone-800 border-b border-stone-600">
-                    <th scope="row" class="px-6 py-4 text-center">
-                        Tecnologia
-                    </th>
-                    <td class="px-6 py-4 text-center">
-                        23
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        <button class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500">
-                            Visualizar Produtos
-                        </button>
-                    </td>
-                </tr>
-                <tr class="bg-stone-800 border-b border-stone-600">
-                    <th scope="row" class="px-6 py-4 text-center">
-                        Tecnologia
-                    </th>
-                    <td class="px-6 py-4 text-center">
-                        23
+                        {{ categoria.produtos.length }}
                     </td>
                     <td class="px-6 py-4 text-center">
                         <button class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500">
@@ -62,6 +36,15 @@
                 </tr>
             </tbody>
         </table>
-        
     </div>
+    <div class="self-end" *ngIf="listaCategorias.temProximaPagina">
+        <button class="rounded-md bg-stone-600 py-2 px-4 hover:bg-stone-500" (click)="carregarMaisCategorias()">
+            Mais
+        </button>
+    </div>
+    <ng-template #semCategorias>
+        <div class="w-full text-center border border-stone-600 rounded-2xl p-10">
+            <h2 class="text-xl">Não existem categorias para serem listadas!</h2>
+        </div>
+    </ng-template>
 </main>
