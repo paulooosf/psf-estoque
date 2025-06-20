@@ -25,12 +25,14 @@
         <div class="flex flex-row justify-end mt-3 gap-3">
             <button
                 class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="cancelar()"
             >
                 Cancelar
             </button>
             <button 
                 [disabled]="!formulario.valid" 
                 [ngClass]="habilitarBotao()"
+                (click)="incluirCategoria()"
             >
                 Cadastrar
             </button>

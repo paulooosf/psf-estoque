@@ -25,14 +25,14 @@ export class CriarCategoriaComponent implements OnInit {
 
   incluirCategoria() {
     if (this.formulario.valid) {
-      this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/listar-categorias']))
+      this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/categorias']))
     } else {
       alert('Preencha o formulário corretamente!')
     }
   }
 
   cancelar() {
-    this.router.navigate(['/listar-categorias'])
+    this.router.navigate(['/categorias'])
   }
 
   habilitarBotao() {
