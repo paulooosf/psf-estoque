@@ -9,6 +9,8 @@ import { ListarCategoriasComponent } from './pages/listar-categorias/listar-cate
 import { CriarCategoriaComponent } from './pages/criar-categoria/criar-categoria.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalProdutosComponent } from './components/modal-produtos/modal-produtos.component';
+import { ListarProdutosComponent } from './pages/listar-produtos/listar-produtos.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     DashboardComponent,
     ListarCategoriasComponent,
-    CriarCategoriaComponent
+    CriarCategoriaComponent,
+    ModalProdutosComponent,
+    ListarProdutosComponent
   ],
   imports: [
     BrowserModule,
