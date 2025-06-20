@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListarCategoriasComponent } from './pages/categoria/listar-categorias/listar-categorias.component';
 import { CriarCategoriaComponent } from './pages/categoria/criar-categoria/criar-categoria.component';
+import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
       path: 'criar-categoria',
       component: CriarCategoriaComponent
+  },
+  {
+    path: 'produtos',
+    component: ListarProdutosComponent
   }
 ];
 
