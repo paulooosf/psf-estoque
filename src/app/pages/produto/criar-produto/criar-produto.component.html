@@ -1,1 +1,75 @@
-<p>criar-produto works!</p>
+<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Cadastrar novo Produto</h1>
+
+    <form [formGroup]="formulario" class="flex flex-col w-96 gap-2">
+        <label for="nome" class="text-xl">Nome:</label>
+        <input 
+            type="text" 
+            formControlName="nome" 
+            id="nome" 
+            placeholder="Digite o nome do produto" 
+            class="border border-stone-600 bg-transparent rounded-xl p-4"
+        >
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.touched"
+        >
+            Digite um nome!
+        </p>
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('nome')?.errors?.['minlength'] && formulario.get('nome')?.touched"
+        >
+            O nome deve ter pelo menos três caracteres!
+        </p>
+
+        <label for="descricao" class="text-xl">Descrição:</label>
+        <input 
+            type="text" 
+            formControlName="descricao" 
+            id="descricao" 
+            placeholder="Digite a descrição do produto" 
+            class="border border-stone-600 bg-transparent rounded-xl p-4"
+        >
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('descricao')?.errors?.['required'] && formulario.get('descricao')?.touched"
+        >
+            Digite uma descrição!
+        </p>
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('descricao')?.errors?.['minlength'] && formulario.get('descricao')?.touched"
+        >
+            A descrição deve ter pelo menos três caracteres!
+        </p>
+
+        <label for="categoria" class="text-xl">Categoria:</label>
+        <select 
+            id="categoria" 
+            formControlName="categoriaId"
+            class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
+        >
+            <option [ngValue]="null">Selecione uma Categoria</option>
+            <option *ngFor="let categoria of listaCategorias" [ngValue]="categoria.id">
+                {{ categoria.nome }}
+            </option>
+        </select>
+
+        <div class="flex flex-row justify-end mt-3 gap-3">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="cancelar()"
+            >
+                Cancelar
+            </button>
+            <button 
+                [disabled]="!formulario.valid" 
+                [ngClass]="habilitarBotao()"
+                (click)="incluirProduto()"
+            >
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</main>

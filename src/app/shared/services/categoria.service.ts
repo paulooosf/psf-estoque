@@ -14,11 +14,11 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  listar(pagina: number): Observable<PaginacaoDto<CategoriaListagemDto>> {
+  listar(pagina: number, tamanhoPagina: number): Observable<PaginacaoDto<CategoriaListagemDto>> {
 
     let params = new HttpParams()
                     .set('pagina', pagina)
-                    .set('tamanhoPagina', 10)
+                    .set('tamanhoPagina', tamanhoPagina)
   
     return this.http.get<PaginacaoDto<CategoriaListagemDto>>(this.API, { params })
   }
