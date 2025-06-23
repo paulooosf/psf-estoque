@@ -48,7 +48,7 @@
                     <td class="px-6 py-4 text-center">
                         <button 
                             class="rounded-full bg-stone-600 py-2 px-4 hover:bg-stone-500"
-                               
+                            (click)="abrirModalQuantidade(produto)"
                         >
                             Alterar Quantidade
                         </button>
@@ -71,10 +71,11 @@
         </div>
     </ng-template>
 
-    <!-- <app-modal-quantidade
+    <app-modal-quantidade
         *ngIf="mostrarModalQuantidade"
-        [produto]="produtoSelecionado"
+        [produto]="produtoSelecionado!"
         (fecharModal)="fecharModalQuantidade()"
+        (recarregarProdutos)="recarregarProdutos()"
     >
-    </app-modal-quant> -->
+    </app-modal-quantidade>
 </main>
