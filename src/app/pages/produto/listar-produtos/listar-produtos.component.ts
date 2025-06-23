@@ -26,6 +26,10 @@ export class ListarProdutosComponent implements OnInit {
   constructor(private service: ProdutoService) { }
 
   ngOnInit(): void {
+    this.carregarProdutos()
+  }
+
+  carregarProdutos() {
     this.service.listar(this.paginaAtual).subscribe((listaProdutos) => {
       this.listaProdutos = listaProdutos
     })
@@ -46,6 +50,11 @@ export class ListarProdutosComponent implements OnInit {
   fecharModalQuantidade(): void {
     this.mostrarModalQuantidade = false
     this.produtoSelecionado = undefined
+  }
+
+  recarregarProdutos() {
+    this.paginaAtual = 1
+    this.carregarProdutos()
   }
 
 }
