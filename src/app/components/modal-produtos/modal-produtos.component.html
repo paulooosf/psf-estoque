@@ -1,7 +1,8 @@
 <main class="fixed bg-black/60 inset-0 z-50 flex justify-center items-center">
     <div class="bg-stone-800 rounded-xl w-[50vw] p-6">
         <h1 class="text-2xl font-bold">Produtos</h1>
-        <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl mt-3">
+
+        <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl mt-3" *ngIf="produtos.length > 0; else semProdutos">
             <table class="w-full border border-stone-600 text-left rtl:text-right">
                 <thead class="bg-stone-700">
                     <tr>
@@ -34,4 +35,10 @@
             </button>
         </div>
     </div>
+
+    <ng-template #semProdutos>
+        <div class="w-full text-center border border-stone-600 rounded-2xl p-10 mt-6">
+            <h2 class="text-xl">Não existem produtos para serem listados!</h2>
+        </div>
+    </ng-template>
 </main>
