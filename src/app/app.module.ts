@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalProdutosComponent } from './components/modal-produtos/modal-produtos.component';
 import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
 import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
+import { ModalQuantidadeComponent } from './components/modal-quantidade/modal-quantidade.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produ
     CriarCategoriaComponent,
     ModalProdutosComponent,
     ListarProdutosComponent,
-    CriarProdutoComponent
+    CriarProdutoComponent,
+    ModalQuantidadeComponent
   ],
   imports: [
     BrowserModule,
