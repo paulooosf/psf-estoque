@@ -50,6 +50,7 @@ export class CriarProdutoComponent implements OnInit {
     if (this.formulario.valid) {
       try {
         this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/produtos']))
+        this.toastr.success('Produto criado com sucesso!')
       } catch (error) {
         this.toastr.error('Ocorreu um erro ao tentar inserir o produto, tente novamente.', 'Erro!')
         console.log(error)

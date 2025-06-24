@@ -28,6 +28,7 @@ export class CriarCategoriaComponent implements OnInit {
     if (this.formulario.valid) {
       try {
         this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/categorias']))
+        this.toastr.success('Categoria criada com sucesso!')
       } catch (error) {
         this.toastr.error('Erro ao tentar inserir a categoria, tente novamente', 'Erro!')
         console.log(error)
@@ -48,5 +49,4 @@ export class CriarCategoriaComponent implements OnInit {
       return 'rounded-md py-2 px-4 hover:bg-transparent border border-stone-600 text-stone-300'
     }
   }
-
 }
