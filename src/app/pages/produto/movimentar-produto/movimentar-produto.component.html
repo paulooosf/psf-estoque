@@ -1,0 +1,65 @@
+<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Movimentar Produto</h1>
+
+    <div class="bg-stone-800 rounded-xl w-max p-6" *ngIf="modo === 'inicio'">
+        <div class="flex flex-row gap-3 justify-center">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="modo = 'remover'"
+            >
+                Remover
+            </button>
+            <button 
+                class="rounded-md py-2 px-4 bg-lime-200 hover:bg-lime-500 text-black hover:text-white"
+                (click)="modo = 'incluir'"
+            >
+                Incluir
+            </button>
+        </div>
+    </div>
+
+    <form [formGroup]="formulario" class="flex flex-col w-96 gap-2" *ngIf="modo === 'incluir' || modo === 'remover'">
+        <label for="produto" class="text-xl">Produto:</label>
+        <select 
+            id="produto" 
+            formControlName="produtoId"
+            class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
+            [(ngModel)]="produtoSelecionado"
+        >
+            <option [ngValue]="null">Selecione um Produto</option>
+            <option *ngFor="let produto of listaProdutos" [ngValue]="produto">
+                {{ produto.nome }}
+            </option>
+        </select>
+
+        <label for="produto" class="text-xl" *ngIf="modo === 'incluir'">Transferir para o Estoque:</label>
+        <label for="produto" class="text-xl" *ngIf="modo === 'remover'">Remover do Estoque:</label>
+        <select 
+            id="estoque" 
+            formControlName="estoqueId"
+            class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
+            [(ngModel)]="estoqueSelecionado"
+        >
+            <option [ngValue]="null">Selecione um Estoque</option>
+            <option *ngFor="let estoque of listaEstoques" [ngValue]="estoque">
+                {{ estoque.nome }}
+            </option>
+        </select>
+
+        <div class="flex flex-row justify-end mt-3 gap-3">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="cancelar()"
+            >
+                Cancelar
+            </button>
+            <button 
+                [disabled]="!formulario.valid" 
+                [ngClass]="habilitarBotao()"
+                (click)="movimentarProduto()"
+            >
+                Movimentar
+            </button>
+        </div>
+    </form>
+</main>
