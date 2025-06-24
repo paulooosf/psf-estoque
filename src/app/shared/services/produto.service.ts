@@ -14,11 +14,11 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(pagina: number): Observable<PaginacaoDto<ProdutoSaidaDto>> {
+  listar(pagina: number, tamanhoPagina: number = 10): Observable<PaginacaoDto<ProdutoSaidaDto>> {
 
     let params = new HttpParams()
                         .set('pagina', pagina)
-                        .set('tamanhoPagina', 10)
+                        .set('tamanhoPagina', tamanhoPagina)
 
     return this.http.get<PaginacaoDto<ProdutoSaidaDto>>(this.API, { params })
   }

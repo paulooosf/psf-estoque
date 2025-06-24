@@ -14,11 +14,11 @@ export class EnderecoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(pagina: number): Observable<PaginacaoDto<EnderecoSaidaDto>> {
+  listar(pagina: number, tamanhoPagina: number = 10): Observable<PaginacaoDto<EnderecoSaidaDto>> {
   
     let params = new HttpParams()
                         .set('pagina', pagina)
-                        .set('tamanhoPagina', 10)
+                        .set('tamanhoPagina', tamanhoPagina)
 
     return this.http.get<PaginacaoDto<EnderecoSaidaDto>>(this.API, { params })
   }
