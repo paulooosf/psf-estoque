@@ -13,6 +13,8 @@ import { ModalProdutosComponent } from './components/modal-produtos/modal-produt
 import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
 import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
 import { ModalQuantidadeComponent } from './components/modal-quantidade/modal-quantidade.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,15 @@ import { ModalQuantidadeComponent } from './components/modal-quantidade/modal-qu
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      closeButton: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
