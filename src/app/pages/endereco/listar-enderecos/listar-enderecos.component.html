@@ -1,0 +1,51 @@
+<main class="bg-stone-800 text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Endereços</h1>
+    <div class="flex flex-row justify-between">
+        <h3 class="text-2xl font-bold">Listagem</h3>
+        <a routerLink="/criar-endereco" class="rounded-md bg-lime-200 py-2 px-4 hover:bg-lime-500 text-black hover:text-white">Adicionar Endereço</a>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md border border-stone-600 rounded-2xl" *ngIf="listaEnderecos.itens && listaEnderecos.itens.length > 0; else semEnderecos">
+        <table class="w-full border border-stone-600 text-left rtl:text-right">
+            <thead class="bg-stone-700">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Logradouro
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Numero
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let endereco of listaEnderecos.itens" class="bg-stone-800 border-b border-stone-600" >
+                    <td class="px-6 py-4">
+                        {{ endereco.id }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ endereco.logradouro }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ endereco.numero }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="self-end" *ngIf="listaEnderecos.temProximaPagina">
+        <button 
+            class="rounded-md bg-stone-600 py-2 px-4 hover:bg-stone-500" 
+            (click)="carregarMaisEnderecos()"
+        >
+            Mais
+        </button>
+    </div>
+    <ng-template #semEnderecos>
+        <div class="w-full text-center border border-stone-600 rounded-2xl p-10">
+            <h2 class="text-xl">Não existem endereços para serem listados!</h2>
+        </div>
+    </ng-template>
+</main>
