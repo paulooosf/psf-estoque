@@ -5,6 +5,8 @@ import { ListarCategoriasComponent } from './pages/categoria/listar-categorias/l
 import { CriarCategoriaComponent } from './pages/categoria/criar-categoria/criar-categoria.component';
 import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-produtos.component';
 import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
+import { ListarEnderecosComponent } from './pages/endereco/listar-enderecos/listar-enderecos.component';
+import { CriarEnderecoComponent } from './pages/endereco/criar-endereco/criar-endereco.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path: 'criar-produto',
     component: CriarProdutoComponent
+  },
+  {
+    path: 'enderecos',
+    component: ListarEnderecosComponent
+  },
+  {
+    path: 'criar-endereco',
+    component: CriarEnderecoComponent
   }
 ];
 

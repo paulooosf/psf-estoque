@@ -15,6 +15,8 @@ import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produ
 import { ModalQuantidadeComponent } from './components/modal-quantidade/modal-quantidade.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CriarEnderecoComponent } from './pages/endereco/criar-endereco/criar-endereco.component';
+import { ListarEnderecosComponent } from './pages/endereco/listar-enderecos/listar-enderecos.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ToastrModule } from 'ngx-toastr';
     ModalProdutosComponent,
     ListarProdutosComponent,
     CriarProdutoComponent,
-    ModalQuantidadeComponent
+    ModalQuantidadeComponent,
+    ListarEnderecosComponent,
+    CriarEnderecoComponent
   ],
   imports: [
     BrowserModule,
