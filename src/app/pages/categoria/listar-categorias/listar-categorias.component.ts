@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CategoriaListagemDto } from 'src/app/shared/models/categoria/categoria.listagem.dto';
 import { PaginacaoDto } from 'src/app/shared/models/common/paginacao.dto';
 import { ProdutoResumoDto } from 'src/app/shared/models/produto/produto.resumo.dto';
@@ -25,19 +26,29 @@ export class ListarCategoriasComponent implements OnInit {
   produtosDaCategoriaSelecionada: ProdutoResumoDto[] = []
 
 
-  constructor(private service: CategoriaService) { }
+  constructor(private service: CategoriaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.service.listar(this.paginaAtual, 10).subscribe((listaCategorias) => {
-      this.listaCategorias = listaCategorias
-    })
+    try {
+      this.service.listar(this.paginaAtual, 10).subscribe((listaCategorias) => {
+        this.listaCategorias = listaCategorias
+      })
+    } catch (error) {
+      this.toastr.error('Ocorreu um erro ao tentar listar as categorias, tente novamente', 'Erro!')
+      console.log(error)
+    }
   }
 
   carregarMaisCategorias() {
-    this.service.listar(++this.paginaAtual, 10).subscribe((listaCategorias) => {
-      this.listaCategorias.itens.push(...listaCategorias.itens)
-      this.listaCategorias.temProximaPagina = listaCategorias.temProximaPagina
-    })
+    try {
+      this.service.listar(++this.paginaAtual, 10).subscribe((listaCategorias) => {
+        this.listaCategorias.itens.push(...listaCategorias.itens)
+        this.listaCategorias.temProximaPagina = listaCategorias.temProximaPagina
+      })
+    } catch (error) {
+      this.toastr.error('Ocorreu um erro ao tentar carregar mais categorias, tente novamente', 'Erro!')
+      console.log(error)
+    }
   }
 
   abrirModalProdutos(produtos: ProdutoResumoDto[]): void {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { PaginacaoDto } from 'src/app/shared/models/common/paginacao.dto';
 import { ProdutoSaidaDto } from 'src/app/shared/models/produto/produto.saida.dto';
 import { ProdutoService } from 'src/app/shared/services/produto.service';
@@ -23,23 +24,33 @@ export class ListarProdutosComponent implements OnInit {
   mostrarModalQuantidade: boolean = false
   produtoSelecionado?: ProdutoSaidaDto
 
-  constructor(private service: ProdutoService) { }
+  constructor(private service: ProdutoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.carregarProdutos()
   }
 
   carregarProdutos() {
-    this.service.listar(this.paginaAtual).subscribe((listaProdutos) => {
-      this.listaProdutos = listaProdutos
-    })
+    try {
+      this.service.listar(this.paginaAtual).subscribe((listaProdutos) => {
+        this.listaProdutos = listaProdutos
+      })
+    } catch (error) {
+      this.toastr.error('Ocorreu um erro ao carregar os produtos, tente novamente.', 'Erro!')
+      console.log(error)
+    }
   }
 
   carregarMaisProdutos() {
-    this.service.listar(++this.paginaAtual).subscribe((listaProdutos) => {
-      this.listaProdutos.itens.push(...listaProdutos.itens)
-      this.listaProdutos.temProximaPagina = listaProdutos.temProximaPagina
-    })
+    try {
+      this.service.listar(++this.paginaAtual).subscribe((listaProdutos) => {
+        this.listaProdutos.itens.push(...listaProdutos.itens)
+        this.listaProdutos.temProximaPagina = listaProdutos.temProximaPagina
+      })
+    } catch (error) {
+      this.toastr.error('Ocorreu um erro ao tentar carregar mais produtos, tente novamente', 'Erro!')
+      console.log(error)
+    }
   }
 
   abrirModalQuantidade(produto: ProdutoSaidaDto): void {

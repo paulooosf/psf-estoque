@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class CriarCategoriaComponent implements OnInit {
 
   formulario!: FormGroup
 
-  constructor(private service: CategoriaService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private service: CategoriaService, private router: Router, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -25,7 +26,12 @@ export class CriarCategoriaComponent implements OnInit {
 
   incluirCategoria() {
     if (this.formulario.valid) {
-      this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/categorias']))
+      try {
+        this.service.incluir(this.formulario.value).subscribe(() => this.router.navigate(['/categorias']))
+      } catch (error) {
+        this.toastr.error('Erro ao tentar inserir a categoria, tente novamente', 'Erro!')
+        console.log(error)
+      }
     } else {
       alert('Preencha a categoria corretamente!')
     }
