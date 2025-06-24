@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ProdutoSaidaDto } from 'src/app/shared/models/produto/produto.saida.dto';
 import { ProdutoService } from 'src/app/shared/services/produto.service';
 
@@ -23,7 +24,7 @@ export class ModalQuantidadeComponent implements OnInit {
     })
   }
 
-  constructor(private service: ProdutoService, private formBuilder: FormBuilder) { }
+  constructor(private service: ProdutoService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
   onFecharModal(): void {
     this.fecharModal.emit()
@@ -34,21 +35,35 @@ export class ModalQuantidadeComponent implements OnInit {
       const quantidade = this.formulario.get('quantidade')?.value
 
       if (this.modo === 'remover' && quantidade > this.produto.quantidade) {
-        alert('A quantidade a ser removida não pode ser maior que a quantidade do produto!')
+        this.toastr.error('A quantidade a ser removida não pode ser maior que a quantidade do produto!', 'Erro!')
         return
       }
 
       if (this.modo === 'adicionar') {
-        this.service.adicionarQuantidade(this.produto.id, quantidade).subscribe(() => {
-          this.fecharModal.emit()
-          this.recarregarProdutos.emit()
-      })
+        try {
+          this.service.adicionarQuantidade(this.produto.id, quantidade).subscribe(() => {
+            this.fecharModal.emit()
+            this.recarregarProdutos.emit()
+            this.toastr.success('Quantidade adicionada com sucesso!')
+          })
+        } catch (error) {
+          this.toastr.error('Ocorreu um erro ao tentar atualizar a quantidade, tente novamente.', 'Erro!')
+          console.log(error)
+        }
       } else {
-        this.service.removerQuantidade(this.produto.id, quantidade).subscribe(() => {
-          this.fecharModal.emit()
-          this.recarregarProdutos.emit()
-      })
+        try {
+          this.service.removerQuantidade(this.produto.id, quantidade).subscribe(() => {
+            this.fecharModal.emit()
+            this.recarregarProdutos.emit()
+            this.toastr.success('Quantidade removida com sucesso!')
+          })
+        } catch (error) {
+          this.toastr.error('Ocorreu um erro ao tentar atualizar a quantidade, tente novamente.', 'Erro!')
+          console.log(error)
+        }
       }
+    } else {
+      this.toastr.error('Preencha o formulário corretamente!', 'Erro!')
     }
   }
 
