@@ -1,0 +1,54 @@
+<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Cadastrar novo Estoque</h1>
+
+    <form [formGroup]="formulario" class="flex flex-col w-96 gap-2">
+        <label for="endereco" class="text-xl">Endereço:</label>
+        <select 
+            id="endereco" 
+            formControlName="enderecoId"
+            class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
+        >
+            <option [ngValue]="null">Selecione um Endereço</option>
+            <option *ngFor="let endereco of listaEnderecos" [ngValue]="endereco.id">
+                {{ endereco.logradouro }}, {{ endereco.numero }}
+            </option>
+        </select>
+
+        <label for="nome" class="text-xl">Nome:</label>
+        <input 
+            type="text" 
+            formControlName="nome" 
+            id="nome" 
+            placeholder="Digite o nome do estoque" 
+            class="border border-stone-600 bg-transparent rounded-xl p-4"
+        >
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.touched"
+        >
+            Digite um nome!
+        </p>
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('nome')?.errors?.['minlength'] && formulario.get('nome')?.touched"
+        >
+            O nome deve ter pelo menos três caracteres!
+        </p>
+
+        <div class="flex flex-row justify-end mt-3 gap-3">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="cancelar()"
+            >
+                Cancelar
+            </button>
+            <button 
+                [disabled]="!formulario.valid" 
+                [ngClass]="habilitarBotao()"
+                (click)="incluirEstoque()"
+            >
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</main>
