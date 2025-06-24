@@ -33,7 +33,7 @@ export class CriarCategoriaComponent implements OnInit {
         console.log(error)
       }
     } else {
-      alert('Preencha a categoria corretamente!')
+      this.toastr.error('Preencha o formulário corretamente!', 'Erro!')
     }
   }
 
