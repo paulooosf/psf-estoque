@@ -1,0 +1,57 @@
+<main class="bg-stone-800 h-full text-white px-60 py-14 flex flex-col gap-10">
+    <h1 class="text-4xl font-bold">Cadastrar novo Endereço</h1>
+
+    <form [formGroup]="formulario" class="flex flex-col w-96 gap-2">
+        <label for="nome" class="text-xl">Logradouro:</label>
+        <input 
+            type="text" 
+            formControlName="logradouro" 
+            id="logradouro" 
+            placeholder="Digite o logradouro" 
+            class="border border-stone-600 bg-transparent rounded-xl p-4"
+        >
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('logradouro')?.errors?.['required'] && formulario.get('logradouro')?.touched"
+        >
+            Digite um logradouro!
+        </p>
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('logradouro')?.errors?.['minlength'] && formulario.get('logradouro')?.touched"
+        >
+            O logradouro deve ter pelo menos três caracteres!
+        </p>
+
+        <label for="numero" class="text-xl">Numero:</label>
+        <input 
+            type="number" 
+            formControlName="numero" 
+            id="numero" 
+            placeholder="Digite o numero" 
+            class="border border-stone-600 bg-transparent rounded-xl p-4"
+        >
+        <p 
+            class="text-sm text-red-400" 
+            *ngIf="formulario.get('numero')?.errors?.['min'] && formulario.get('numero')?.touched"
+        >
+            O número não pode ser menor que um!
+        </p>
+
+        <div class="flex flex-row justify-end mt-3 gap-3">
+            <button
+                class="rounded-md bg-red-200 py-2 px-4 hover:bg-red-500 text-black hover:text-white"
+                (click)="cancelar()"
+            >
+                Cancelar
+            </button>
+            <button 
+                [disabled]="!formulario.valid" 
+                [ngClass]="habilitarBotao()"
+                (click)="incluirEndereco()"
+            >
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</main>
