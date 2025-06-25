@@ -56,6 +56,14 @@ const routes: Routes = [
   {
     path: 'movimentar-produto',
     component: MovimentarProdutoComponent
+  },
+  {
+    path: 'movimentar-produto/produto/:id',
+    component: MovimentarProdutoComponent
+  },
+  {
+    path: 'movimentar-produto/estoque/:id',
+    component: MovimentarProdutoComponent
   }
 ];
 

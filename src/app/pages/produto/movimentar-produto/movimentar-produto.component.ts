@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EstoqueSaidaDto } from 'src/app/shared/models/estoque/estoque.saida.dto';
 import { ProdutoSaidaDto } from 'src/app/shared/models/produto/produto.saida.dto';
@@ -18,9 +18,11 @@ export class MovimentarProdutoComponent implements OnInit {
   modo: string = 'inicio'
   listaProdutos: ProdutoSaidaDto[] = []
   listaEstoques: EstoqueSaidaDto[] = []
+  produtoIdRota?: number
+  estoqueIdRota?: number
 
   constructor(private service: ProdutoService, private estoqueService: EstoqueService,
-    private router: Router, private formBuilder: FormBuilder, private toastr: ToastrService) { }
+    private router: Router, private formBuilder: FormBuilder, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -28,14 +30,39 @@ export class MovimentarProdutoComponent implements OnInit {
       produtoId: [null, [Validators.required]]
     })
 
+    this.verificarRota()
+    
     this.carregarProdutos()
     this.carregarEstoques()
+  }
+
+  verificarRota(): void {
+     if (this.route.snapshot.url.some(segment => segment.path === 'produto')) {
+      const id = this.route.snapshot.paramMap.get('id')
+      if (id) {
+        this.produtoIdRota = +id
+      }
+    }
+
+    if (this.route.snapshot.url.some(segment => segment.path === 'estoque')) {
+      const id = this.route.snapshot.paramMap.get('id')
+      if (id) {
+        this.estoqueIdRota = +id
+      }
+    }
   }
 
   carregarProdutos(): void {
     try {
       this.service.listar(1, 999).subscribe((listaProdutos) => {
         this.listaProdutos = listaProdutos.itens
+
+        if (this.produtoIdRota) {
+          const produtoParaSelecionar = this.listaProdutos.find(produto => produto.id === this.produtoIdRota)
+          if (produtoParaSelecionar) {
+            this.formulario.patchValue({ produtoId: produtoParaSelecionar })
+          }
+        }
       })
     } catch (error) {
       this.toastr.error('Ocorreu um erro ao carregar os produtos, tente novamente.', 'Erro!')
@@ -47,6 +74,13 @@ export class MovimentarProdutoComponent implements OnInit {
     try {
       this.estoqueService.listar(1, 999).subscribe((listaEstoques) => {
         this.listaEstoques = listaEstoques.itens
+
+        if (this.estoqueIdRota) {
+          const estoqueParaSelecionar = this.listaEstoques.find(e => e.id === this.estoqueIdRota)
+          if (estoqueParaSelecionar) {
+            this.formulario.patchValue({ estoqueId: estoqueParaSelecionar })
+          }
+        }
       })
     } catch (error) {
       this.toastr.error('Ocorreu um erro ao carregar os estoques, tente novamente.', 'Erro!')
