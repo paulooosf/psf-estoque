@@ -5,5 +5,6 @@ export interface ProdutoSaidaDto {
     nome: string,
     descricao: string,
     quantidade: number,
-    categoria: CategoriaEntradaDto
+    categoria: CategoriaEntradaDto,
+    estoqueNome: string
 }
