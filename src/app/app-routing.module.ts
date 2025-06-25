@@ -7,6 +7,9 @@ import { ListarProdutosComponent } from './pages/produto/listar-produtos/listar-
 import { CriarProdutoComponent } from './pages/produto/criar-produto/criar-produto.component';
 import { ListarEnderecosComponent } from './pages/endereco/listar-enderecos/listar-enderecos.component';
 import { CriarEnderecoComponent } from './pages/endereco/criar-endereco/criar-endereco.component';
+import { ListarEstoquesComponent } from './pages/estoque/listar-estoques/listar-estoques.component';
+import { CriarEstoqueComponent } from './pages/estoque/criar-estoque/criar-estoque.component';
+import { MovimentarProdutoComponent } from './pages/produto/movimentar-produto/movimentar-produto.component';
 
 const routes: Routes = [
   {
@@ -41,6 +44,18 @@ const routes: Routes = [
   {
     path: 'criar-endereco',
     component: CriarEnderecoComponent
+  },
+  {
+    path: 'estoques',
+    component: ListarEstoquesComponent
+  },
+  {
+    path: 'criar-estoque',
+    component: CriarEstoqueComponent
+  },
+  {
+    path: 'movimentar-produto',
+    component: MovimentarProdutoComponent
   }
 ];
 
