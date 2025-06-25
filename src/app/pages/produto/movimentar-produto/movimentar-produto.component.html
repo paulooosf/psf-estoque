@@ -24,7 +24,6 @@
             id="produto" 
             formControlName="produtoId"
             class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
-            [(ngModel)]="produtoSelecionado"
         >
             <option [ngValue]="null">Selecione um Produto</option>
             <option *ngFor="let produto of listaProdutos" [ngValue]="produto">
@@ -38,7 +37,6 @@
             id="estoque" 
             formControlName="estoqueId"
             class="border dark:border-stone-600 bg-stone-800 rounded-xl p-4"
-            [(ngModel)]="estoqueSelecionado"
         >
             <option [ngValue]="null">Selecione um Estoque</option>
             <option *ngFor="let estoque of listaEstoques" [ngValue]="estoque">

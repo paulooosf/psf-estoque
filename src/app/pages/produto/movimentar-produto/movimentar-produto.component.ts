@@ -18,16 +18,14 @@ export class MovimentarProdutoComponent implements OnInit {
   modo: string = 'inicio'
   listaProdutos: ProdutoSaidaDto[] = []
   listaEstoques: EstoqueSaidaDto[] = []
-  produtoSelecionado?: ProdutoSaidaDto
-  estoqueSelecionado?: EstoqueSaidaDto
 
   constructor(private service: ProdutoService, private estoqueService: EstoqueService,
     private router: Router, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      estoqueId: [null],
-      produtoId: [null]
+      estoqueId: [null, [Validators.required]],
+      produtoId: [null, [Validators.required]]
     })
 
     this.carregarProdutos()
@@ -62,13 +60,16 @@ export class MovimentarProdutoComponent implements OnInit {
       return
     }
 
+    const estoqueSelecionado: EstoqueSaidaDto = this.formulario.value.estoqueId
+    const produtoSelecionado: ProdutoSaidaDto = this.formulario.value.produtoId
+
     if (this.modo === 'incluir') {
-      if (this.estoqueSelecionado!.produtos.some(produto => produto.nome === this.produtoSelecionado!.nome)) {
+      if (estoqueSelecionado.produtos.some(produto => produto.nome === produtoSelecionado.nome)) {
         this.toastr.error('O produto já se encontra no estoque escolhido!', 'Erro!')
         return
       }
       try {
-        this.estoqueService.incluirProduto(this.estoqueSelecionado!.id, this.produtoSelecionado!.id).subscribe(() => this.router.navigate(['/produtos']))
+        this.estoqueService.incluirProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/produtos']))
         this.toastr.success('Movimentação realizada com sucesso!')
       } catch (error) {
         this.toastr.error('Ocorreu um erro ao tentar movimentar o produto, tente novamente.', 'Erro!')
@@ -77,12 +78,12 @@ export class MovimentarProdutoComponent implements OnInit {
     }
 
     if (this.modo === 'remover') {
-      if (!this.estoqueSelecionado!.produtos.some(produto => produto.nome === this.produtoSelecionado!.nome)) {
+      if (!estoqueSelecionado.produtos.some(produto => produto.nome === produtoSelecionado.nome)) {
         this.toastr.error('O produto não se encontra no estoque escolhido!', 'Erro!')
         return
       }
       try {
-        this.estoqueService.removerProduto(this.estoqueSelecionado!.id, this.produtoSelecionado!.id).subscribe(() => this.router.navigate(['/produtos']))
+        this.estoqueService.removerProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/produtos']))
         this.toastr.success('Movimentação realizada com sucesso!')
       } catch (error) {
         this.toastr.error('Ocorreu um erro ao tentar movimentar o produto, tente novamente.', 'Erro!')
