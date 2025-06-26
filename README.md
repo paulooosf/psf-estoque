@@ -13,11 +13,15 @@
 <img alt="Captura de tela do projeto" src="https://i.imgur.com/mbOy1EA.png">
 
 ## Funcionalidades
-- Cadastro e listagem de categorias, produtos e estoques;
+- Cadastro e listagem de categorias, produtos, endereços e estoques;
+- Dashboard com visão geral do estoque;
 - Visualização de produtos com estoque crítico;
-- Inserção e remoção de produtos em estoque;
+- Movimentação de produtos entre estoques;
 - Controle de quantidade de produtos;
-- Paginação.
+- Cadastro e validação com Reactive Forms;
+- Notificações com Ngx Toastr;
+- Tipagem de dados com DTOs;
+- Paginação de dados.
 
 ## Como usar
 Certifique-se de ter o Node.js e Angular Cli instalados.
@@ -31,6 +35,8 @@ npm install
 ng serve
 ```
 Após a inicialização, o front-end estará disponível em (http://localhost:4200)[http://localhost:4200]
+
+_OBS: O sistema interage diretamente com uma API de gerenciamento de estoque, que pode ser encontrada [neste repositório](https://github.com/paulooosf/psf-estoque-backend)._
 
 ## Créditos
 - Paulo Henrique - [paulooosf](http://github.com/paulooosf)
