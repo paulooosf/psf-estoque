@@ -103,7 +103,7 @@ export class MovimentarProdutoComponent implements OnInit {
         return
       }
       try {
-        this.estoqueService.incluirProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/produtos']))
+        this.estoqueService.incluirProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/estoques']))
         this.toastr.success('Movimentação realizada com sucesso!')
       } catch (error) {
         this.toastr.error('Ocorreu um erro ao tentar movimentar o produto, tente novamente.', 'Erro!')
@@ -117,7 +117,7 @@ export class MovimentarProdutoComponent implements OnInit {
         return
       }
       try {
-        this.estoqueService.removerProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/produtos']))
+        this.estoqueService.removerProduto(estoqueSelecionado.id, produtoSelecionado.id).subscribe(() => this.router.navigate(['/estoques']))
         this.toastr.success('Movimentação realizada com sucesso!')
       } catch (error) {
         this.toastr.error('Ocorreu um erro ao tentar movimentar o produto, tente novamente.', 'Erro!')
