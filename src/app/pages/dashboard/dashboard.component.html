@@ -48,10 +48,10 @@
                     <td class="px-6 py-4 text-center">
                         {{ produto.nome }}
                     </td>
-                    <td class="px-6 py-4 text-center" *ngIf="produto.estoqueNome !== undefined">
+                    <td class="px-6 py-4 text-center" *ngIf="produto.estoqueNome">
                         {{ produto.estoqueNome }}
                     </td>
-                    <td class="px-6 py-4 text-center text-red-400" *ngIf="produto.estoqueNome === undefined">
+                    <td class="px-6 py-4 text-center text-red-400" *ngIf="!produto.estoqueNome">
                         Não alocado
                     </td>
                     <td class="px-6 py-4 text-center">
