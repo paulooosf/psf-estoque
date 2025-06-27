@@ -10,7 +10,10 @@
   <a href="#como-usar">Como usar</a> •
   <a href="#créditos">Créditos</a>
 </p>
-<img alt="Captura de tela do projeto" src="https://i.imgur.com/mbOy1EA.png">
+<img alt="Captura de tela do projeto" src="https://i.imgur.com/PYiYHz4.png">
+<img alt="Captura de tela do projeto" src="https://i.imgur.com/rx4htFe.png">
+<img alt="Captura de tela do projeto" src="https://i.imgur.com/Asz4aai.png">
+<img alt="Captura de tela do projeto" src="https://i.imgur.com/K2cpqJb.png">
 
 ## Funcionalidades
 - Cadastro e listagem de categorias, produtos, endereços e estoques;
@@ -34,7 +37,7 @@ npm install
 ```
 ng serve
 ```
-Após a inicialização, o front-end estará disponível em (http://localhost:4200)[http://localhost:4200]
+Após a inicialização, o front-end estará disponível em [http://localhost:4200](http://localhost:4200)
 
 _OBS: O sistema interage diretamente com uma API de gerenciamento de estoque, que pode ser encontrada [neste repositório](https://github.com/paulooosf/psf-estoque-backend)._
 
